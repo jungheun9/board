@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import article.service.ArticleContentNotFoundException;
 import article.service.ArticleData;
 import article.service.ArticleNotFoundException;
 import article.service.ModifyArticleService;
@@ -43,7 +44,7 @@ public class ModifyArticleHandler implements CommandHandler {
 			int no = Integer.parseInt(noVal);
 			ArticleData articleData = readService.getArticle(no, false);
 			User authUser = (User) req.getSession().getAttribute("authUser");
-			if (!PermissionChecker.canModify(authUser.getId(), articleData.getArticle())) {
+			if (!PermissionChecker.canAccess(authUser.getId(), articleData.getArticle())) {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
@@ -52,7 +53,7 @@ public class ModifyArticleHandler implements CommandHandler {
 			
 			req.setAttribute("modReq", modReq);
 			return FORM_VIEW;
-		} catch (ArticleNotFoundException e) {
+		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
