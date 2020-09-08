@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import article.command.ReadArticleHandler;
 import auth.service.User;
 import comment.model.Writer;
 import comment.service.WriteCommentService;
@@ -16,6 +17,7 @@ public class WriteCommentHandler implements CommandHandler {
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/readArticle.jsp";
 	WriteCommentService writeService = new WriteCommentService();
+	ReadArticleHandler readArticleHandler = new ReadArticleHandler();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -29,11 +31,11 @@ public class WriteCommentHandler implements CommandHandler {
 		}
 	}
 
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
 	
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
@@ -42,16 +44,16 @@ public class WriteCommentHandler implements CommandHandler {
 		writeRequest.validate(errors);
 		
 		if (!errors.isEmpty()) {
-			return FORM_VIEW;
+			return readArticleHandler.process(req, res);
 		}
 		
 		writeService.insert(writeRequest);
 		
-		return FORM_VIEW;
+		return readArticleHandler.process(req, res);
 	}
 	
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {
-		String noVal = req.getParameter("article_no");
+		String noVal = req.getParameter("articleNo");
 		int no = Integer.parseInt(noVal);
 		return new WriteRequest(
 				new Writer(user.getId(), user.getName()),

@@ -13,7 +13,7 @@ public class ListCommentHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String articleNoVal = req.getParameter("articleNo");
-		int articleNo = Integer.parseInt("articleNoVal");
+		int articleNo = Integer.parseInt(articleNoVal);
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
 		if (pageNoVal != null) {

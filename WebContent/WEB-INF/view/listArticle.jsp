@@ -28,7 +28,7 @@
 	<tr>
 		<td>${article.number}</td>
 		<td>
-		<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
+		<a href="read.do?articleNo=${article.number}&pageNo=${articlePage.currentPage}">
 			<c:out value="${article.title}"/>
 		</a>
 		</td>

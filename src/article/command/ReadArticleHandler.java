@@ -18,7 +18,7 @@ public class ReadArticleHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String noVal = req.getParameter("no");
+		String noVal = req.getParameter("articleNo");
 		int articleNum = Integer.parseInt(noVal);
 		String commentPageVal = req.getParameter("commentPage");
 		int commentPageNum = 

@@ -8,22 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-댓글
-<form action="write.do" method="post">
-<input type="hidden" name="article_no" value="${article_no }">
-<table border="1" width="100%">
-	<tr>
-		<td>댓글 내용</td>
-	</tr>
-	<tr>
-		<td><textarea name="content" cols="30" rows="10"></textarea></td>
-	</tr>
-	<tr>
-		<td><input type="submit" value="댓글 쓰기"></td>
-	</tr>
-</table>
-</form>
 <table>
 	<tr>
 		<td>작성자</td>
@@ -37,7 +21,7 @@
 	</c:if>
 	<c:forEach var="comment" items="${commentPage.content }">
 	<tr>
-		<td>${comment.writerName }</td>
+		<td>${comment.writer.name }</td>
 		<td>${comment.regDate }</td>
 		<td>${comment.content }</td>
 	</tr>
