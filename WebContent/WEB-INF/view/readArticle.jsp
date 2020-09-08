@@ -39,26 +39,13 @@
 
 <hr>
 
-댓글
-<table>
-	<tr>
-		<td>작성자</td>
-		<td>작성일자</td>
-		<td>내용</td>
-	</tr>
-	<c:if test="${commentPage.hasNoComments() }">
-	<tr>
-		<td colspan="3">댓글이 없습니다.</td>
-	</tr>
-	</c:if>
-	<c:forEach var="comment" items="${commentPage }">
-	<tr>
-		<td>${comment.writerName }</td>
-		<td>${comment.regDate }
-		<td>${comment.content }
-	</tr>
-	</c:forEach>
-</table>
+<%-- include 댓글 --%>
+<%-- <%@ include uri="list.do?pageNo=${pageNo}" %> --%>
+<c:set var="commentPageNo" value="${empty param.commentPageNo ? '1' : param.commentPageNo}"/>
+<c:import url="http://localhost:8080/board/article/read.do">
+	<c:param name="no" value="${articleData.article.number}"/>
+	<c:param name="pageNo" value="${commentPageNo}"/>
+</c:import>
 
 </body>
 </html>

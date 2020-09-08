@@ -20,5 +20,8 @@
 </u:notLogin>
 
 <br/>
+
+<a href="article/list.do">[게시판 보기]</a>
+
 </body>
 </html>

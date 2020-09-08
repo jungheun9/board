@@ -19,8 +19,7 @@ import mvc.command.NullHandler;
 public class ControllerUsingURI extends HttpServlet {
 
     // <커맨드, 핸들러인스턴스> 매핑 정보 저장
-    private Map<String, CommandHandler> commandHandlerMap = 
-    		new HashMap<>();
+    private Map<String, CommandHandler> commandHandlerMap = new HashMap<>();
 
     public void init() throws ServletException {
         String configFile = getInitParameter("configFile");
@@ -52,8 +51,8 @@ public class ControllerUsingURI extends HttpServlet {
         process(request, response);
     }
 
-    protected void doPost(HttpServletRequest request,
-    HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException {
         process(request, response);
     }
 

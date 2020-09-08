@@ -42,6 +42,22 @@
 		<td>${comment.content }</td>
 	</tr>
 	</c:forEach>
+	<c:if test="${commentPage.hasComments() }">
+		<tr>
+		<td colspan="4">
+			<c:if test="${commentPagePage.startPage > 5}">
+			<a href="list.do?pageNo=${commentPage.startPage - 5 }">[이전]</a>
+			</c:if>
+			<c:forEach var="pNo" begin="${commentPage.startPage }" 
+			end="${commentPage.endPage }">
+			<a href="list.do?pageNo=${pNo }">[${pNo }]</a>
+			</c:forEach>
+			<c:if test="${commentPage.endPage < commentPage.totalPages }">
+			<a href="list.do?pageNo=${commentPage.startPage + 5 }">[다음]</a>
+			</c:if>
+		</td>
+	</tr>
+	</c:if>
 </table>
 
 </body>
