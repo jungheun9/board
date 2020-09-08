@@ -12,7 +12,7 @@
 댓글
 <form action="write.do" method="post">
 <input type="hidden" name="article_no" value="${article_no }">
-<table>
+<table border="1" width="100%">
 	<tr>
 		<td>댓글 내용</td>
 	</tr>
@@ -35,7 +35,7 @@
 		<td colspan="3">댓글이 없습니다.</td>
 	</tr>
 	</c:if>
-	<c:forEach var="comment" items="${commentPage }">
+	<c:forEach var="comment" items="${commentPage.content }">
 	<tr>
 		<td>${comment.writerName }</td>
 		<td>${comment.regDate }</td>

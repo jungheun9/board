@@ -40,12 +40,7 @@
 <hr>
 
 <%-- include 댓글 --%>
-<%-- <%@ include uri="list.do?pageNo=${pageNo}" %> --%>
-<c:set var="commentPageNo" value="${empty param.commentPageNo ? '1' : param.commentPageNo}"/>
-<c:import url="http://localhost:8080/board/article/read.do">
-	<c:param name="no" value="${articleData.article.number}"/>
-	<c:param name="pageNo" value="${commentPageNo}"/>
-</c:import>
+<%@ include file="listComment.jsp" %>
 
 </body>
 </html>
