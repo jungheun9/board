@@ -31,6 +31,7 @@
 		<a href="read.do?articleNo=${article.number}&pageNo=${articlePage.currentPage}">
 			<c:out value="${article.title}"/>
 		</a>
+		[${article.commentCount }]
 		</td>
 		<td>${article.writer.name}</td>
 		<td>${article.readCount}</td>

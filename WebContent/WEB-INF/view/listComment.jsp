@@ -34,7 +34,7 @@
 			</c:if>
 			<c:forEach var="pNo" begin="${commentPage.startPage }" 
 			end="${commentPage.endPage }">
-			<a href="list.do?pageNo=${pNo }">[${pNo }]</a>
+			<a href="/board/article/read.do?articleNo=${articleData.article.number }&commentPage=${pNo}">[${pNo }]</a>
 			</c:forEach>
 			<c:if test="${commentPage.endPage < commentPage.totalPages }">
 			<a href="list.do?pageNo=${commentPage.startPage + 5 }">[다음]</a>
