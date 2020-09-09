@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import article.command.ReadArticleHandler;
 import auth.service.User;
 import comment.model.Writer;
 import comment.service.WriteCommentService;
@@ -15,9 +14,8 @@ import mvc.command.CommandHandler;
 
 public class WriteCommentHandler implements CommandHandler {
 	
-	private static final String FORM_VIEW = "/WEB-INF/view/readArticle.jsp";
+	private static final String FORM_VIEW = "/article/read.do";
 	WriteCommentService writeService = new WriteCommentService();
-	ReadArticleHandler readArticleHandler = new ReadArticleHandler();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -44,12 +42,12 @@ public class WriteCommentHandler implements CommandHandler {
 		writeRequest.validate(errors);
 		
 		if (!errors.isEmpty()) {
-			return readArticleHandler.process(req, res);
+			return FORM_VIEW;
 		}
 		
 		writeService.insert(writeRequest);
 		
-		return readArticleHandler.process(req, res);
+		return FORM_VIEW;
 	}
 	
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {

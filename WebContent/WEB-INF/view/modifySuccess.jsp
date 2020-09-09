@@ -12,7 +12,7 @@
 <br>
 ${ctxPath = pageContext.request.contextPath ; ""}
 <a href="${ctxPath }/article/list.do">[게시글목록보기]</a>
-<a href="${ctxPath }/article/read.do?no=${modReq.articleNumber}">
+<a href="${ctxPath }/article/read.do?articleNo=${modReq.articleNumber}">
 [게시글내용보기]</a>
 </body>
 </html>

@@ -23,8 +23,8 @@ public class ArticleDao {
 		
 		try {
 			pstmt = conn.prepareStatement("insert into article "
-					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt)"
-					+ "values (?,?,?,?,?,0)");
+					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt, comment_cnt)"
+					+ "values (?,?,?,?,?,0,0)");
 			pstmt.setString(1, article.getWriter().getId());
 			pstmt.setString(2, article.getWriter().getName());
 			pstmt.setString(3, article.getTitle());
@@ -42,7 +42,7 @@ public class ArticleDao {
 							article.getTitle(),
 							article.getRegDate(),
 							article.getModifiedDate(),
-							0);
+							0, 0);
 				}
 			}
 			return null;
@@ -119,6 +119,16 @@ public class ArticleDao {
 		}
 	}
 	
+	public void increaseCommentCount(Connection conn, int no) throws SQLException {
+		try (PreparedStatement pstmt = 
+				conn.prepareStatement(
+						"update article set comment_cnt = comment_cnt + 1 " +
+						"where article_no = ?")) {
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	
 	public int update(Connection conn, int no, String title) throws SQLException {
 		try (PreparedStatement pstmt = conn.prepareStatement(
 				"update article set title = ?, moddate = now() " +
@@ -144,7 +154,8 @@ public class ArticleDao {
 				rs.getString("title"),
 				toDate(rs.getTimestamp("regdate")),
 				toDate(rs.getTimestamp("moddate")),
-				rs.getInt("read_cnt")
+				rs.getInt("read_cnt"),
+				rs.getInt("comment_cnt")
 				);
 	}
 	

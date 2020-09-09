@@ -10,15 +10,17 @@ public class Article {
 	private Date regDate;
 	private Date modifiedDate;
 	private int readCount;
+	private int commentCount;
 	
 	public Article(Integer number, Writer writer, String title, 
-			Date regDate, Date modifiedDate, int readCount) {
+			Date regDate, Date modifiedDate, int readCount, int commentCount) {
 		this.number = number;
 		this.writer = writer;
 		this.title = title;
 		this.regDate = regDate;
 		this.modifiedDate = modifiedDate;
 		this.readCount = readCount;
+		this.commentCount = commentCount;
 	}
 
 	public Integer getNumber() {
@@ -43,5 +45,9 @@ public class Article {
 
 	public int getReadCount() {
 		return readCount;
+	}
+	
+	public int getCommentCount() {
+		return commentCount;
 	}
 }

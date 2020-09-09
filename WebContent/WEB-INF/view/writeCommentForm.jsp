@@ -14,7 +14,11 @@
 		<td>댓글 내용</td>
 	</tr>
 	<tr>
-		<td><textarea name="content" cols="30" rows="10"></textarea></td>
+		<td>
+		<textarea name="content" cols="30" rows="10">
+			<c:if test="${errors.content}">댓글 내용을 입력해야 합니다.</c:if>
+		</textarea>
+		</td>
 	</tr>
 	<tr>
 		<td><input type="submit" value="댓글 쓰기"></td>

@@ -31,8 +31,8 @@
 	<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}"/>
 		<a href="/board/article/list.do?pageNo=${pageNo }">[목록]</a>
 		<c:if test="${authUser.id == articleData.article.writer.id }">
-		<a href="modify.do?no=${articleData.article.number}">[게시글수정]</a>
-		<a href="delete.do?no=${articleData.article.number}">[게시글삭제]</a>
+		<a href="/board/article/modify.do?no=${articleData.article.number}">[게시글수정]</a>
+		<a href="/board/article/delete.do?no=${articleData.article.number}">[게시글삭제]</a>
 		</c:if>
 	</td>
 </table>
